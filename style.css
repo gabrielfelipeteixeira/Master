@@ -32,6 +32,10 @@ body {
 .topbar {
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
   padding: 14px 16px; background: var(--accent); color: #fff;
+  /* espaço pro notch / barra de status no iPhone em tela cheia */
+  padding-top: calc(14px + env(safe-area-inset-top));
+  padding-left: calc(16px + env(safe-area-inset-left));
+  padding-right: calc(16px + env(safe-area-inset-right));
 }
 @media (prefers-color-scheme: dark) { .topbar { color: #0b1a19; } }
 .topbar h1 { margin: 0; font-size: 1.25rem; }
@@ -39,7 +43,7 @@ body {
 .month-nav span { min-width: 140px; text-align: center; }
 .month-nav button { background: rgba(255,255,255,.2); color: inherit; border: 0; font-size: 1.3rem; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; line-height: 1; padding: 0; }
 
-main { max-width: 1000px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+main { max-width: 1000px; margin: 0 auto; padding: 16px; padding-bottom: calc(16px + env(safe-area-inset-bottom)); display: grid; gap: 16px; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 .card, .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
 .card span { display: block; color: var(--muted); font-size: .85rem; }
@@ -54,6 +58,9 @@ input, select, button, .btn {
   font: inherit; color: var(--text); background: var(--bg);
   border: 1px solid var(--border); border-radius: 8px; padding: 9px 11px;
 }
+/* iOS dá zoom ao focar campos com fonte < 16px */
+input, select { font-size: 16px; }
+body { -webkit-tap-highlight-color: transparent; }
 button, .btn { cursor: pointer; background: var(--surface); }
 button:hover, .btn:hover { border-color: var(--accent); }
 button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
